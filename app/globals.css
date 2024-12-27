@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body,
+:root {
+  height: 100%;
+}
+
+.overflow-wrap-break-word {
+  overflow-wrap: break-word;
+}
+
+.border-gradient {
+  background-clip: padding-box;
+  border: solid 4px transparent;
+  position: relative;
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  z-index: -1;
+  background: linear-gradient(to right, #34d399, #3b82f6, #8b5cf6);
+  border-radius: inherit;
+}
+
+@layer base {
+  :root {
+    /* Base colors - Light mode */
+    --background: 0 0% 100%; /* White for a clean canvas */
+    --foreground: 0 0% 10%; /* Dark gray for readability */
+    --card: 0 0% 98%; /* Subtle off-white for cards */
+    --card-foreground: 0 0% 10%; /* Matching dark text for cards */
+    --popover: 0 0% 100%; /* Pure white for popovers */
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary palette */
+    --primary: 265 80% 60%; /* Purple (#8338EC) as the main primary */
+    --primary-foreground: 0 0% 100%; /* White text for contrast */
+    --secondary: 18 90% 58%; /* Orange (#FB5607) */
+    --secondary-foreground: 0 0% 100%; /* White text for contrast */
+    --accent: 54 100% 60%; /* Vibrant yellow (#FFEB3B) */
+    --accent-foreground: 0 0% 10%; /* Dark text for contrast */
+
+    /* Supporting palette */
+    --muted: 270 20% 95%; /* Soft purple-gray for muted areas */
+    --muted-foreground: 0 0% 30%; /* Subtle muted text */
+    --destructive: 330 100% 55%; /* Magenta (#FF006E) for warnings */
+    --destructive-foreground: 0 0% 100%; /* White text */
+
+    /* Highlight and interactive colors */
+    --highlight: 260 70% 65%; /* Vibrant purple (#8338EC) */
+    --highlight-foreground: 0 0% 100%; /* White text on highlights */
+    --link: 210 90% 60%; /* Bright blue (#3A86FF) */
+    --link-foreground: 0 0% 100%; /* White text on links */
+
+    /* Interface elements */
+    --border: 0 0% 85%; /* Light gray for borders */
+    --input: 0 0% 95%; /* Matching inputs to muted tones */
+    --ring: 265 80% 60%; /* Focus ring using purple */
+    --radius: 0.75rem; /* Rounded corners for modern look */
+  }
+
+  .dark {
+    /* Base colors - Dark mode */
+    --background: 0 0% 10%; /* Deep gray for background */
+    --foreground: 0 0% 90%; /* Light text */
+    --card: 0 0% 15%; /* Darker cards */
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 90%;
+
+    /* Dark mode primary colors */
+    --primary: 265 80% 50%; /* Slightly darker purple for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 18 90% 50%; /* Deep orange */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 54 100% 50%; /* Deep yellow */
+    --accent-foreground: 0 0% 10%;
+
+    /* Supporting palette for dark mode */
+    --muted: 270 20% 25%;
+    --muted-foreground: 0 0% 70%;
+    --destructive: 330 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Highlight and link adjustments */
+    --highlight: 260 70% 50%; /* Adjusted purple for dark mode */
+    --highlight-foreground: 0 0% 100%;
+    --link: 210 90% 50%; /* Slightly muted blue */
+    --link-foreground: 0 0% 100%;
+
+    /* Interface elements */
+    --border: 0 0% 25%;
+    --input: 0 0% 20%;
+    --ring: 265 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* styles/globals.css */
+
+/* Add custom styles for the editor */
+.mdxeditor {
+  --editor-text-color: hsl(var(--foreground));
+  --editor-background-color: transparent;
+  --editor-border-color: hsl(var(--border));
+  --editor-border-radius: var(--radius);
+  --toolbar-background-color: hsl(var(--muted));
+  --toolbar-text-color: hsl(var(--foreground));
+}
+
+.mdxeditor:focus-within {
+  outline: none;
+  ring: 2px;
+  ring-color: hsl(var(--ring));
+}
+
+.about-section-svg-background {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M700 247.69C677.13 247.69 653.33 263.13 653.33 280C653.33 297.66 677.21 316.75 700 316.75C721.25 316.75 741.41 297.72 741.41 280C741.41 263.19 721.17 247.69 700 247.69' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 89.36C45.56 89.36 63.2 113.55 125.26 140C133.2 143.38 132.3 145.12 140 149.03C209.67 184.44 210.96 182.05 280 218.65C334.49 247.53 340.12 242.36 387.06 280C410.12 298.49 400 330.91 420 330.91C445.44 330.91 461.8 313.26 477.93 280C508.11 217.8 507.53 210.85 512.62 140C517.58 70.85 481.58 48.6 498.03 0C505.27 -21.4 529.01 0 560 0C607.25 0 610.33 -9.9 654.5 0C680.33 5.79 674.47 31.38 700 31.38C757.89 31.38 760.41 13.66 821.33 0C830.41 -2.03 830.66 0 840 0C910 0 910 0 980 0C1050 0 1050 0 1120 0C1190 0 1190 0 1260 0C1264.38 0 1266.21 -3.45 1268.75 0C1317.79 66.55 1365.66 78.85 1363.16 140C1361.28 186.07 1308.95 214.43 1260 214.43C1218.69 214.43 1214.04 182.74 1182.63 140C1144.04 87.48 1168.22 42.31 1120 23.9C1066.9 3.63 1049.74 63.6 980 62.63C909.74 61.65 885.94 -0.98 840 20C801.21 37.71 810.53 82.49 810.53 140C810.53 165.2 816.58 176.07 840 185.41C901.32 209.87 916.64 181.53 980 207.59C1031.64 228.83 1033.3 236.87 1070 280C1103.3 319.13 1092.86 327.41 1120 372.11C1135.36 397.41 1153.12 392.29 1155 420C1159.49 486.23 1148.79 495.77 1132.73 560C1131.29 565.77 1126.36 560 1120 560C1050 560 1050 560 980 560C910 560 910 560 840 560C770 560 770 560 700 560C630 560 630 560 560 560C506.8 560 498.09 576.18 453.6 560C428.09 550.72 435.72 535.21 420 509.09C393.58 465.21 402.71 457.51 369.31 420C332.71 378.89 330.99 368.87 280 351.84C216.34 330.59 209.97 348.16 140 343.44C69.97 338.72 50.82 356 0 332.97C-19.18 324.28 0 306.49 0 280C0 210 0 210 0 140C0 114.68 -17.07 89.36 0 89.36' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M140 112C127.15 112 110.53 44.64 110.53 0C110.53 -11.36 125.26 0 140 0C150.77 0 161.54 -8.9 161.54 0C161.54 47.1 152.65 112 140 112' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1472.41 140C1494.17 76.17 1457.93 49.48 1481.82 0C1491.73 -20.52 1531.46 -20.55 1540 0C1560.55 49.45 1540 70 1540 140C1540 210 1540 210 1540 280C1540 350 1540 350 1540 420C1540 490 1575 525 1540 560C1505 595 1470 560 1400 560C1361.35 560 1322.69 576.9 1322.69 560C1322.69 535.12 1361.94 518.76 1400 476.45C1424.9 448.76 1448.61 451.95 1448.61 420C1448.61 367.28 1426.79 362.14 1400 307.1C1392.72 292.14 1380.47 294.38 1380.47 280C1380.47 260.83 1387.82 258.55 1400 240C1433.79 188.55 1453.26 196.17 1472.41 140' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M700 209.23C649.9 209.23 597.78 243.04 597.78 280C597.78 318.68 647.01 322.92 700 360.5C745.72 392.92 751.36 385.78 795.2 420C821.36 440.42 810.67 467.26 840 469.78C903.07 475.21 910.75 455.18 980 435.91C1000.2 430.29 1018.89 427.54 1018.89 420C1018.89 412.58 999.76 412.03 980 406C910.31 384.72 896.47 402.95 840 365.37C801.82 339.95 823 316.03 790.7 280C753 237.96 746.36 209.23 700 209.23' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 496.67C48.22 477.55 70.1 499.22 140 504.48C210.1 509.76 213.06 500.85 280 517.74C323.06 528.61 360 548.79 360 560C360 569.92 320 560 280 560C210 560 210 560 140 560C70 560 48.2 581.8 0 560C-21.8 550.14 -21.78 505.31 0 496.67' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M560 56C557.11 56 555.41 25.89 555.41 0C555.41 -2.11 557.7 0 560 0C563.5 0 567 -3.09 567 0C567 24.91 562.9 56 560 56' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M578.26 140C578.26 119.82 644.01 91.72 700 91.72C729.44 91.72 749.12 118.54 749.12 140C749.12 158.06 726.98 170.77 700 170.77C641.55 170.77 578.26 159.35 578.26 140' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M980 16.58C960.08 16.58 940.63 4.31 940.63 0C940.63 -3.98 960.32 0 980 0C1003.34 0 1026.67 -4.02 1026.67 0C1026.67 4.27 1003.1 16.58 980 16.58' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1228.68 140C1228.68 112.1 1242.42 78.97 1260 78.97C1278.95 78.97 1301.75 113.13 1301.75 140C1301.75 158.71 1279.81 170.13 1260 170.13C1243.28 170.13 1228.68 157.68 1228.68 140' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1540 54.44C1536.78 54.44 1527.27 22.17 1527.27 0C1527.27 -5.05 1538.79 -5.16 1540 0C1545.16 22.06 1543.14 54.44 1540 54.44' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 241.82C55.12 234.71 69.66 257.88 140 261.94C209.66 265.96 212.22 251.12 280 257.98C301.43 260.15 318.43 268.31 318.43 280C318.43 292.22 302.04 304.71 280 305.79C212.83 309.08 210.25 293.8 140 288.75C70.25 283.74 67.27 289.88 0 285.68C-2.73 285.51 0 282.84 0 280C0 260.91 -14.88 243.74 0 241.82' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M840 280C840 258.49 913.7 247.82 980 247.82C1003.7 247.82 1020 261.16 1020 280C1020 305.25 1008.2 336 980 336C918.2 336 840 302.58 840 280' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M560 420C630 412.13 631.79 404.25 700 404.25C714.39 404.25 714.87 409.42 725.2 420C784.87 481.08 770.65 521.58 840 547.56C898.05 569.3 914.74 511.27 980 515.45C1011.96 517.49 1034.44 547.44 1034.44 560C1034.44 569.72 1007.22 560 980 560C910 560 910 560 840 560C770 560 770 560 700 560C630 560 630 560 560 560C541.8 560 523.6 574.07 523.6 560C523.6 504.07 541.8 490 560 420C560 420 560 420 560 420' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1497.22 420C1529.29 367.01 1528.98 301.54 1540 301.54C1550.37 301.54 1540 360.77 1540 420C1540 490 1575 525 1540 560C1505 595 1470 560 1400 560C1387.47 560 1374.93 565.48 1374.93 560C1374.93 551.93 1387.86 546.8 1400 532.9C1449 476.8 1459.29 482.69 1497.22 420' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M0 538.33C51.59 538.33 121.33 554.54 121.33 560C121.33 565.37 51.47 569.19 0 560C-9.19 558.36 -9.07 538.33 0 538.33' stroke='rgba(51%2c 121%2c 194%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-size: cover;
+  background-position: center;
+  opacity: 1; /* Adjust this value to control the background intensity */
+  z-index: -1;
+}
+
+.footer-svg-background {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1001%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M995.01 71.09a54.7 54.7 0 1 0-89.09-63.49z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1210.99 311.08L1222.91 311.08L1222.91 329.47L1210.99 329.47z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M690.02 450.35a19.17 19.17 0 1 0-37.09 9.72z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M315.65 109.19L339.27 109.19L339.27 132.81L315.65 132.81z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M157.98 6.23L187.89 6.23L187.89 58.93L157.98 58.93z' fill='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M224.78 153.61L265.76 153.61L265.76 172.57L224.78 172.57z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M242.53 29.26 a51.07 51.07 0 1 0 102.14 0 a51.07 51.07 0 1 0 -102.14 0z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1277.87 469.71 a51.02 51.02 0 1 0 102.04 0 a51.02 51.02 0 1 0 -102.04 0z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M409.91 60.03 a30.83 30.83 0 1 0 61.66 0 a30.83 30.83 0 1 0 -61.66 0z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M411.51 266.59L451.23 266.59L451.23 297.9L411.51 297.9z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M186.31 304.84L236.56 304.84L236.56 350.81L186.31 350.81z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M309.35 400.55a29.75 29.75 0 1 0-33.6 49.11z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1242.76 217.97a55.04 55.04 0 1 0-98.15-49.85z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M974.92 430.41L979.12 430.41L979.12 450.84L974.92 450.84z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M457.72 465.69L501.24 465.69L501.24 501.28L457.72 501.28z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M902.37 232.04 a45.44 45.44 0 1 0 90.88 0 a45.44 45.44 0 1 0 -90.88 0z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M154.95 532.91a46.01 46.01 0 1 0-88.37-25.69z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1092.32 499.77L1126.98 499.77L1126.98 534.43L1092.32 534.43z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M1021.89 61.27 a10.09 10.09 0 1 0 20.18 0 a10.09 10.09 0 1 0 -20.18 0z' fill='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M-3.63 157.85a17.3 17.3 0 1 0 32.11-12.88z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M224.25 373.16a22.47 22.47 0 1 0-3.65-44.79z' fill='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M407.6 282.3L415.95 282.3L415.95 290.65L407.6 290.65z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M443.6 485.86L474.37 485.86L474.37 516.63L443.6 516.63z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M184.98 455.76L200.67 455.76L200.67 471.45L184.98 471.45z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M129.17 227.12L132.14 227.12L132.14 264.2L129.17 264.2z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M103.37 21.73a12.09 12.09 0 1 0 15.84 18.26z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M1311.73 170.61L1358.17 170.61L1358.17 226.22L1311.73 226.22z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M1093.61 545.06L1141.7 545.06L1141.7 593.15L1093.61 593.15z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M871.94 396.89 a42.17 42.17 0 1 0 84.34 0 a42.17 42.17 0 1 0 -84.34 0z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M616.73 549.62L666.26 549.62L666.26 599.15L616.73 599.15z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M16.07 301.87 a44.08 44.08 0 1 0 88.16 0 a44.08 44.08 0 1 0 -88.16 0z' stroke='rgba(53%2c 151%2c 231%2c 1)'%3e%3c/path%3e%3cpath d='M577.88 484.73a47.09 47.09 0 1 0-93.19-13.64z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M1191.93 283.07L1208.17 283.07L1208.17 299.31L1191.93 299.31z' fill='%23d3b714'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1001'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
