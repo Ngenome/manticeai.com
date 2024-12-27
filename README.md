@@ -1,98 +1,146 @@
-# Next Auth v5 - Advanced Guide (2024)
+# Mantice AI Landing Page
 
-![image](https://github.com/AntonioErdeljac/next-auth-v5-advanced-guide/assets/23248726/d0175397-8c3f-4e82-91c4-78c14f29bb81)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Next.js](https://img.shields.io/badge/Next.js-13.0-blue.svg)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC.svg)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-007ACC.svg)](https://www.typescriptlang.org/)
 
-This is a repository for Next Auth v5 - Advanced Guide (2024)
+A modern, responsive landing page built with Next.js, Tailwind CSS, and TypeScript. Features a clean design with dark mode support, animations, and comprehensive sections for showcasing AI products and services.
 
-[VIDEO TUTORIAL](https://youtu.be/1MTyCvS05V4)
+![Mantice AI Landing Page](public/mantice-og-image.jpg)
 
-Key Features:
-- 🔐 Next-auth v5 (Auth.js)
-- 🚀 Next.js 14 with server actions
-- 🔑 Credentials Provider
-- 🌐 OAuth Provider (Social login with Google & GitHub)
-- 🔒 Forgot password functionality
-- ✉️ Email verification
-- 📱 Two factor verification
-- 👥 User roles (Admin & User)
-- 🔓 Login component (Opens in redirect or modal)
-- 📝 Register component
-- 🤔 Forgot password component
-- ✅ Verification component
-- ⚠️ Error component
-- 🔘 Login button
-- 🚪 Logout button
-- 🚧 Role Gate
-- 🔍 Exploring next.js middleware
-- 📈 Extending & Exploring next-auth session
-- 🔄 Exploring next-auth callbacks
-- 👤 useCurrentUser hook
-- 🛂 useRole hook
-- 🧑 currentUser utility
-- 👮 currentRole utility
-- 🖥️ Example with server component
-- 💻 Example with client component
-- 👑 Render content for admins using RoleGate component
-- 🛡️ Protect API Routes for admins only
-- 🔐 Protect Server Actions for admins only
-- 📧 Change email with new verification in Settings page
-- 🔑 Change password with old password confirmation in Settings page
-- 🔔 Enable/disable two-factor auth in Settings page
-- 🔄 Change user role in Settings page (for development purposes only)
+## 🌟 Features
 
-### Prerequisites
+- 🎨 Modern, clean UI design
+- 🌙 Dark mode support
+- 📱 Fully responsive
+- ⚡ Performance optimized
+- 🔒 Security-focused architecture
+- 🎯 SEO optimized
+- 🎭 Customizable components
+- 📊 Status page
+- 📝 Blog integration ready
+- 💳 Pricing page
 
-**Node version 18.7.x**
+## 🚀 Tech Stack
 
-### Cloning the repository
+- [Next.js 13](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Lucide Icons](https://lucide.dev/) - Beautiful icons
+- [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode support
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [shadcn/ui](https://ui.shadcn.com/) - UI components
 
-```shell
-git clone https://github.com/AntonioErdeljac/next-auth-v5-advanced-guide.git
+## 📦 Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/mantice-landing-page.git
 ```
 
-### Install packages
+2. Install dependencies:
 
-```shell
-npm i
+```bash
+cd mantice-landing-page
+npm install
 ```
 
-### Setup .env file
+3. Create a `.env.local` file in the root directory:
 
-
-```js
-DATABASE_URL=
-DIRECT_URL=
-
-AUTH_SECRET=
-
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-RESEND_API_KEY=
-
-NEXT_PUBLIC_APP_URL=
+```env
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
 
-### Setup Prisma
-```shell
-npx prisma generate
-npx prisma db push
-```
+4. Run the development server:
 
-### Start the app
-
-```shell
+```bash
 npm run dev
 ```
 
-## Available commands
+Visit `http://localhost:3000` to see your application.
 
-Running commands with npm `npm run [command]`
+## 🏗️ Project Structure
 
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
-# fha-new-frontend
+```
+mantice-landing-page/
+├── app/                    # Next.js app directory
+│   ├── about/             # About page
+│   ├── blog/              # Blog page
+│   ├── contact/           # Contact page
+│   ├── pricing/           # Pricing page
+│   ├── security/          # Security page
+│   ├── status/            # Status page
+│   └── page.tsx           # Home page
+├── components/            # Reusable components
+├── constants/             # Constants and configuration
+├── lib/                   # Utility functions
+├── public/               # Static assets
+└── types/                # TypeScript types
+```
+
+## 🎨 Customization
+
+### Themes
+
+The project uses CSS variables for theming. Modify the colors in `globals.css`:
+
+```css
+:root {
+  --primary: 220 14% 96%;
+  --secondary: 220 14% 90%;
+  ...;
+}
+
+.dark {
+  --primary: 220 14% 4%;
+  --secondary: 220 14% 10%;
+  ...;
+}
+```
+
+### Components
+
+Components are built using [shadcn/ui](https://ui.shadcn.com/). You can customize them in the `components/ui` directory.
+
+## 🔧 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build production version
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript compiler check
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE.md).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📝 Usage & Modification
+
+Feel free to use this code as a template for your own projects. You can modify and adapt it to your needs. Please remember to:
+
+1. Replace all instances of "Mantice AI" with your own brand
+2. Update the content to match your services
+3. Replace images with your own assets
+4. Customize the color scheme and design elements
+5. Update the meta information in `app/layout.tsx`
+
+## 🚨 Support
+
+For support, please open an issue in the GitHub repository.
+
+## 🌟 Credits
+
+- Design inspired by modern SaaS landing pages
+- Icons by [Lucide](https://lucide.dev/)
+- UI components by [shadcn/ui](https://ui.shadcn.com/)
+
+---
+
+Made with ❤️ using Next.js and Tailwind CSS

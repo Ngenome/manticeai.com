@@ -1,0 +1,2665 @@
+Compiled Text Files - Generated on 2024-12-27 18:11:26
+Source Directory: /home/kelvin/coding/ai/manticeai/landingpage
+
+##########
+FILE: next-auth.d.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/next-auth.d.ts
+##########
+
+import NextAuth, { type DefaultSession } from "next-auth";
+import { AppUser } from "./types";
+// export type ExtendedUser = DefaultSession["user"] & {
+//   role: UserRole;
+//   isTwoFactorEnabled: boolean;
+//   isOAuth: boolean;
+// };
+export type ExtendedUser = DefaultSession["user"] & {
+  id: string;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string | null;
+  bio: string | null;
+  phone_number: string | null;
+  is_email_verified: boolean;
+  token: string;
+};
+declare module "next-auth" {
+  interface Session {
+    user: AppUser;
+  }
+}
+
+
+==========
+
+##########
+FILE: tailwind.config.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/tailwind.config.ts
+##########
+
+import type { Config } from "tailwindcss";
+const svgToDataUri = require("mini-svg-data-uri");
+
+const colors = require("tailwindcss/colors");
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+const config = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  prefix: "",
+  theme: {
+  	container: {
+  		center: 'true',
+  		padding: '2rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
+  	},
+  	extend: {
+  		colors: {
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
+  },
+  plugins: [
+    require("tailwindcss-animate"),
+    addVariablesForColors,
+    function ({ matchUtilities, theme }: any) {
+      matchUtilities(
+        {
+          "bg-grid": (value: any) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`
+            )}")`,
+          }),
+          "bg-grid-small": (value: any) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="8" height="8" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`
+            )}")`,
+          }),
+          "bg-dot": (value: any) => ({
+            backgroundImage: `url("${svgToDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="1.6257413380501518"></circle></svg>`
+            )}")`,
+          }),
+        },
+        { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
+      );
+    },
+  ],
+} satisfies Config;
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
+export default config;
+
+
+==========
+
+##########
+FILE: mdx-components.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/mdx-components.tsx
+##########
+
+import type { MDXComponents } from "mdx/types";
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    ...components,
+  };
+}
+
+
+==========
+
+##########
+FILE: next-env.d.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/next-env.d.ts
+##########
+
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/basic-features/typescript for more information.
+
+
+==========
+
+##########
+FILE: constants/urls.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/constants/urls.ts
+##########
+
+// constants/urls.ts
+
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const API_URL = `${BACKEND_URL}/api`;
+
+export const URLS = {
+  //  auth endpoints
+  auth: {
+    login: `${API_URL}/v1/auth/login/`,
+    register: `${API_URL}/v1/auth/register/`,
+    googleAuth: `${API_URL}/v1/auth/login/google/`,
+    logout: `${API_URL}/v1/auth/logout/`,
+    verifyEmail: `${API_URL}/v1/auth/verify-email/`,
+    resendVerification: `${API_URL}/v1/auth/verify-email/resend/`,
+    requestPasswordReset: `${API_URL}/v1/auth/password/reset/`,
+    confirmPasswordReset: `${API_URL}/v1/auth/password/reset/confirm/`,
+    changePassword: `${API_URL}/v1/auth/password/change/`,
+    profile: `${API_URL}/v1/auth/profile/`,
+  },
+
+  // New payments endpoints
+  payments: {
+    balance: `${API_URL}/v1/payments/balance/`,
+    purchase: `${API_URL}/v1/payments/credits/purchase/`,
+    verify: `${API_URL}/v1/payments/credits/verify/`,
+    history: `${API_URL}/v1/payments/credits/history/`,
+    webhook: `${API_URL}/v1/payments/webhook/`,
+  },
+
+  // Tools endpoints
+  tools: {
+    detail: (toolId: string) => `${API_URL}/v1/tools/tools/${toolId}/`,
+    list: `${API_URL}/v1/tools/tools/`,
+    execute: (toolId: string) => `${API_URL}/v1/tools/tools/${toolId}/execute/`,
+    history: `${API_URL}/v1/tools/executions/`,
+  },
+} as const;
+
+export default URLS;
+
+
+==========
+
+##########
+FILE: constants/secrets.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/constants/secrets.ts
+##########
+
+export const testToken =
+  "c5f3945b3075fa13e1ea461fa12d70b7dd2aee7afc6db87dacf3feeebf5db495";
+
+
+==========
+
+##########
+FILE: components/theme-provider.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/theme-provider.tsx
+##########
+
+"use client";
+
+import * as React from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+}
+
+
+==========
+
+##########
+FILE: components/scaffold.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/scaffold.tsx
+##########
+
+interface ScaffoldProps {
+  mode?: "code" | "html";
+  error?: string;
+  isLoading: boolean;
+}
+
+function parseError(error: string) {
+  const lines = error.split("\n");
+  const [message, details] = [lines[0], lines.slice(1)];
+  return [message, details.join("\n")];
+}
+
+export default function Scaffold({
+  mode = "html",
+  error,
+  isLoading = false,
+}: ScaffoldProps) {
+  const animate = isLoading ? "animate-pulse" : "";
+  if (error) {
+    const [message, detail] = parseError(error);
+    return (
+      <div className="mx-auto mt-10 w-full max-w-[80%]">
+        <div className="bg-secondary text-black dark:text-white">
+          <div
+            role="alert"
+            className="relative mb-2 rounded border-l-4 border-red-500 p-4"
+          >
+            <strong className="font-bold">Error! </strong>
+            <span className="block sm:inline">{message}</span>
+            {detail !== "" && (
+              <p className="mt-4 text-sm text-muted-foreground">{detail}</p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="ml-[15%] w-full max-w-[80%]">
+      {" "}
+      <div role="status" className={`my-7 ${animate}`}>
+        {" "}
+        <div className="mb-4 h-2.5 w-[82%] rounded-full bg-zinc-300 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[70%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <span className="sr-only">Loading...</span>{" "}
+      </div>
+      {mode === "html" && (
+        <div role="status" className={`mb-7 max-w-[80%] ${animate}`}>
+          {" "}
+          <div className="flex h-48 w-full items-center justify-center rounded bg-zinc-300 dark:bg-zinc-700">
+            {" "}
+            <svg
+              className="h-12 w-12 text-gray-200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 640 512"
+            >
+              <path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" />
+            </svg>{" "}
+          </div>
+          <span className="sr-only">Loading...</span>{" "}
+        </div>
+      )}
+      <div role="status" className={`my-6 ${animate}`}>
+        {" "}
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[82%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <span className="sr-only">Loading...</span>{" "}
+      </div>
+      <div role="status" className={`my-6 ${animate}`}>
+        {" "}
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[82%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <span className="sr-only">Loading...</span>{" "}
+      </div>
+      <div role="status" className={`mb-6 mt-7 ${animate}`}>
+        {" "}
+        <div className="mb-4 h-2.5 w-[82%] rounded-full bg-zinc-300 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[72%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[80%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <span className="sr-only">Loading...</span>{" "}
+      </div>
+      <div role="status" className={`my-6 ${animate}`}>
+        {" "}
+        <div className="mb-2.5 h-2 max-w-[78%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="mb-2.5 h-2 max-w-[75%] rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <span className="sr-only">Loading...</span>{" "}
+      </div>
+    </div>
+  );
+}
+
+
+==========
+
+##########
+FILE: components/site-layout.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/site-layout.tsx
+##########
+
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
+import {
+  ArrowRight,
+  ExternalLink,
+  Mail,
+  Twitter,
+  Github,
+  Linkedin,
+} from "lucide-react";
+
+const footerLinks = {
+  product: [
+    { label: "Features", href: "#features" },
+    { label: "Pricing", href: "/pricing" },
+  ],
+  company: [
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+  ],
+  legal: [
+    { label: "Privacy", href: "/privacy-policy" },
+    { label: "Terms", href: "/terms-of-service" },
+    { label: "Security", href: "/security" },
+    { label: "Status", href: "/status" },
+  ],
+};
+
+export default function SiteLayout({
+  children,
+  showHeaderCta = true,
+}: {
+  children: React.ReactNode;
+  showHeaderCta?: boolean;
+}) {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      {/* Navigation */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3">
+            <Image
+              src="/logo.png"
+              alt="Mantice AI"
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="text-xl font-bold">Mantice AI</span>
+          </Link>
+          <div className="flex items-center gap-4">
+            <ModeToggle />
+            {showHeaderCta && (
+              <Button asChild>
+                <a
+                  href="https://app.manticeai.com"
+                  className="gap-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Launch App
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1">{children}</main>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-b from-background to-primary/5 border-t">
+        <div className="container py-12 md:py-16">
+          {/* Top Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <Image
+                  src="/logo.png"
+                  alt="Mantice AI"
+                  width={40}
+                  height={40}
+                  className="rounded-xl"
+                />
+                <h3 className="text-2xl font-bold">Mantice AI</h3>
+              </div>
+              <p className="text-muted-foreground mb-6 max-w-sm">
+                Transform your workflow with intelligent AI tools. Experience
+                the future of work today.
+              </p>
+              <div className="flex gap-4">
+                <a
+                  href="https://twitter.com/manticeai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                >
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://github.com/manticeai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/manticeai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Links Sections */}
+            <div>
+              <h4 className="font-semibold mb-6">Product</h4>
+              <ul className="space-y-4">
+                {footerLinks.product.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-6">Company</h4>
+              <ul className="space-y-4">
+                {footerLinks.company.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-6">Legal</h4>
+              <ul className="space-y-4">
+                {footerLinks.legal.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Section with Gradient Line */}
+          <div className="relative">
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                <p className="text-sm text-muted-foreground">
+                  © {currentYear} Mantice AI. All rights reserved.
+                </p>
+                <div className="flex items-center gap-6">
+                  <a
+                    href="mailto:info@manticeai.com"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                  >
+                    <Mail className="h-4 w-4" />
+                    info@manticeai.com
+                  </a>
+                  <Button variant="outline" size="sm" asChild>
+                    <a
+                      href="https://app.manticeai.com/register"
+                      className="gap-2"
+                    >
+                      Get Started
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
+==========
+
+##########
+FILE: components/spinner.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/spinner.tsx
+##########
+
+import React from "react";
+
+const Spinner = (
+  props: React.SVGProps<SVGSVGElement> & { currentFill?: string }
+) => {
+  return (
+    <div role="status">
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 100 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+        className={
+          "w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" +
+          `animate-spin ${props.className}`
+        }
+      >
+        <path
+          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+          fill="currentColor"
+        />
+        <path
+          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+          fill="currentFill"
+        />
+      </svg>
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
+};
+
+export default Spinner;
+
+
+==========
+
+##########
+FILE: components/mode-toggle.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/mode-toggle.tsx
+##########
+
+"use client";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Moon, Sun, Laptop } from "lucide-react";
+
+export function ModeToggle() {
+  const { setTheme, theme } = useTheme();
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          {theme === "light" ? (
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+          ) : theme === "dark" ? (
+            <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+          ) : (
+            <Laptop className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+          )}
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          <Sun className="mr-2 h-4 w-4" />
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          <Moon className="mr-2 h-4 w-4" />
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          <Laptop className="mr-2 h-4 w-4" />
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+
+==========
+
+##########
+FILE: components/section-under-development.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/section-under-development.tsx
+##########
+
+"use client";
+
+import React from "react";
+import Lottie from "lottie-react";
+import developmentModeLottie from "@/lottie/developmentMode.json";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Construction } from "lucide-react";
+
+const SectionUnderDevelopment = () => {
+  return (
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold text-center">
+          Section Under Development
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center space-y-4">
+        <Alert variant="warning">
+          <Construction className="h-4 w-4" />
+          <AlertTitle>Work in Progress</AlertTitle>
+          <AlertDescription>
+            We're working hard to bring you new features. Please check back
+            soon!
+          </AlertDescription>
+        </Alert>
+        <Lottie animationData={developmentModeLottie} className="w-48 h-48" />
+        <p className="text-sm text-muted-foreground text-center">
+          Our team is actively developing this section. We appreciate your
+          patience.
+        </p>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default SectionUnderDevelopment;
+
+
+==========
+
+##########
+FILE: components/card-hover-effect.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/components/card-hover-effect.tsx
+##########
+
+"use client";
+import { cn } from "@/lib/utils/cn";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  CardTitle,
+  CardDescription,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  Card,
+} from "@/components/ui/card";
+import { CalendarDaysIcon, ViewIcon } from "lucide-react";
+import { Assistant } from "@/types";
+export const AssistantsGrid = ({
+  items,
+  className,
+}: {
+  items: Assistant[];
+  className?: string;
+}) => {
+  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
+        className
+      )}
+    >
+      {items.map((item, idx) => (
+        <Link
+          href={"/assistants/" + item?.uid}
+          key={item.id}
+          className="relative group  block p-2 h-full w-full"
+          onMouseEnter={() => setHoveredIndex(idx)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          <AnimatePresence>
+            {hoveredIndex === idx && (
+              <motion.span
+                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+                layoutId="hoverBackground"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  transition: { duration: 0.15 },
+                }}
+                exit={{
+                  opacity: 0,
+                  transition: { duration: 0.15, delay: 0.2 },
+                }}
+              />
+            )}
+          </AnimatePresence>
+          <AssistantCard assistant={item} />
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export const AssistantCard = ({
+  className,
+  assistant,
+}: {
+  className?: string;
+  assistant: Assistant;
+}) => {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl h-full w-full overflow-hidden border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        className
+      )}
+    >
+      <Card key={assistant.id}>
+        <CardHeader className="pb-0">
+          <CardTitle>{assistant.name}</CardTitle>
+          <CardDescription>{assistant.description}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center py-0">
+          <img
+            alt={assistant.name}
+            className="rounded-t-xl object-cover"
+            height="100"
+            src={assistant.avatar}
+            style={{
+              aspectRatio: "200/100",
+              objectFit: "cover",
+            }}
+            width="200"
+          />
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <div className="flex items-center space-x-2">
+            <CalendarDaysIcon className="w-4 h-4 opacity-70" />
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              Created {assistant.created_at}
+            </span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <ViewIcon className="w-4 h-4 opacity-70" />
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              Published
+            </span>
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+};
+// export const CardTitle = ({
+//   className,
+//   children,
+// }: {
+//   className?: string;
+//   children: React.ReactNode;
+// }) => {
+//   return (
+//     <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+//       {children}
+//     </h4>
+//   );
+// };
+// export const CardDescription = ({
+//   className,
+//   children,
+// }: {
+//   className?: string;
+//   children: React.ReactNode;
+// }) => {
+//   return (
+//     <p
+//       className={cn(
+//         "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
+//         className
+//       )}
+//     >
+//       {children}
+//     </p>
+//   );
+// };
+
+
+==========
+
+##########
+FILE: lib/utils.ts
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/lib/utils.ts
+##########
+
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+
+==========
+
+##########
+FILE: app/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/page.tsx
+##########
+
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import {
+  ArrowRight,
+  Sparkles,
+  Zap,
+  Shield,
+  Bot,
+  Code,
+  Image as ImageIcon,
+  FileText,
+  CheckCircle2,
+  Mail,
+  Twitter,
+  Github,
+  Linkedin,
+  ExternalLink,
+  Stars,
+  Repeat,
+  Gauge,
+  Lock,
+} from "lucide-react";
+
+const features = [
+  {
+    icon: Bot,
+    title: "AI Chat Assistant",
+    description:
+      "Intelligent conversations and instant assistance for any task",
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/10",
+  },
+  {
+    icon: Code,
+    title: "Code Generation",
+    description: "Transform ideas into production-ready code instantly",
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/10",
+  },
+  {
+    icon: ImageIcon,
+    title: "Image Generation",
+    description: "Create stunning visuals and artwork with AI",
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
+  },
+  {
+    icon: FileText,
+    title: "Content Writing",
+    description: "Generate engaging content for any purpose",
+    color: "text-green-500",
+    bgColor: "bg-green-500/10",
+  },
+];
+
+const toolHighlights = [
+  {
+    title: "Intelligent Processing",
+    description: "Advanced AI models for accurate outputs",
+    icon: Stars,
+  },
+  {
+    title: "Continuous Updates",
+    description: "Regular improvements and new features",
+    icon: Repeat,
+  },
+  {
+    title: "Lightning Fast",
+    description: "Get results in seconds, not minutes",
+    icon: Gauge,
+  },
+  {
+    title: "Secure & Private",
+    description: "Enterprise-grade security for your data",
+    icon: Lock,
+  },
+];
+
+const pricingCards = [
+  {
+    title: "Starter",
+    price: "$10",
+    credits: "1,000",
+    features: [
+      "Access to all basic tools",
+      "Standard processing speed",
+      "Email support",
+      "7-day history",
+    ],
+  },
+  {
+    title: "Pro",
+    price: "$49",
+    credits: "5,500",
+    popular: true,
+    features: [
+      "Access to all advanced tools",
+      "Priority processing",
+      "Priority support",
+      "30-day history",
+      "API access",
+    ],
+  },
+  {
+    title: "Enterprise",
+    price: "$199",
+    credits: "25,000",
+    features: [
+      "Custom tool integration",
+      "Dedicated infrastructure",
+      "24/7 phone support",
+      "90-day history",
+      "Team management",
+      "Custom API limits",
+    ],
+  },
+];
+
+const footerLinks = {
+  product: [
+    { label: "Features", href: "#features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "API", href: "/api" },
+    { label: "Documentation", href: "/docs" },
+  ],
+  company: [
+    { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
+    { label: "Careers", href: "/careers" },
+    { label: "Contact", href: "/contact" },
+  ],
+  legal: [
+    { label: "Privacy", href: "/privacy-policy" },
+    { label: "Terms", href: "/terms-of-service" },
+    { label: "Security", href: "/security" },
+    { label: "Status", href: "/status" },
+  ],
+};
+
+export default function LandingPage() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-20 md:pt-32 pb-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-grid-white/10" />
+          </div>
+          <div className="container relative">
+            <div className="max-w-3xl mx-auto text-center">
+              <Badge variant="secondary" className="mb-4">
+                <Sparkles className="h-3.5 w-3.5 mr-2" />
+                Powered by Advanced AI Models
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                Transform Your Work with Intelligent AI Tools
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                Access powerful AI tools for code generation, content creation,
+                image generation, and more. Experience the future of
+                productivity today.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild className="gap-2 text-base">
+                  <a href="https://app.manticeai.com/register">
+                    Start Free Trial
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="text-base"
+                >
+                  <Link href="#features">Explore Features</Link>
+                </Button>
+              </div>
+              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                {toolHighlights.map((highlight) => (
+                  <div
+                    key={highlight.title}
+                    className="flex flex-col items-center gap-2 p-4 rounded-lg bg-primary/5"
+                  >
+                    <highlight.icon className="h-5 w-5 text-primary" />
+                    <h3 className="font-medium">{highlight.title}</h3>
+                    <p className="text-xs text-muted-foreground text-center">
+                      {highlight.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-20" id="features">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">
+                Everything You Need in One Place
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                A comprehensive suite of AI tools designed to enhance your
+                productivity and creativity. Built for professionals, easy for
+                everyone.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="group relative rounded-xl border p-8 hover:border-primary/50 transition-colors"
+                >
+                  <div
+                    className={`h-12 w-12 rounded-lg ${feature.bgColor} flex items-center justify-center mb-6`}
+                  >
+                    <feature.icon className={`h-6 w-6 ${feature.color}`} />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                  <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn more
+                    <ArrowRight className="h-4 w-4" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section className="py-20 bg-muted/50">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">
+                Simple, Usage-Based Pricing
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Choose the perfect plan for your needs. Only pay for what you
+                use, with no hidden fees or long-term commitments.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {pricingCards.map((card) => (
+                <div
+                  key={card.title}
+                  className={`relative rounded-xl border bg-background p-8 ${
+                    card.popular ? "border-primary shadow-lg" : ""
+                  }`}
+                >
+                  {card.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full">
+                      Most Popular
+                    </div>
+                  )}
+                  <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                  <div className="mb-6">
+                    <span className="text-3xl font-bold">{card.price}</span>
+                    <span className="text-muted-foreground"> /month</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    {card.credits} credits included
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {card.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-center gap-3 text-sm"
+                      >
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className="w-full"
+                    variant={card.popular ? "default" : "outline"}
+                  >
+                    Get Started
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="relative py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary to-primary-foreground opacity-10" />
+          <div className="container relative">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Transform Your Work?
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Join thousands of users already benefiting from our AI tools.
+                Start your free trial today.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild>
+                  <a
+                    href="https://app.manticeai.com/register"
+                    className="gap-2"
+                  >
+                    Get Started Free
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="https://app.manticeai.com/contact">Contact Sales</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/layout.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/layout.tsx
+##########
+
+import type { Metadata } from "next";
+import { Rethink_Sans } from "next/font/google";
+import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
+import SiteLayout from "@/components/site-layout";
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
+const rethink_sans = Rethink_Sans({ subsets: ["latin"] });
+export const metadata: Metadata = {
+  title: {
+    default: "Mantice AI",
+    template: "%s | Mantice AI",
+  },
+  description:
+    "Advanced AI tools and solutions for automation, analysis, and content creation. Transform your workflow with intelligent AI assistance.",
+  keywords: [
+    "AI tools",
+    "artificial intelligence",
+    "machine learning",
+    "automation",
+    "content generation",
+    "data analysis",
+    "AI assistant",
+    "productivity tools",
+  ],
+  authors: [{ name: "Mantice AI Team" }],
+  creator: "Mantice AI",
+  publisher: "Mantice AI",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(APP_URL),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+  openGraph: {
+    title: "Mantice AI",
+    description: "Transform your workflow with intelligent AI assistance",
+    url: APP_URL,
+    siteName: "Mantice AI",
+    images: [
+      {
+        url: new URL("/mantice-og-image.jpg", APP_URL).toString(),
+        width: 1200,
+        height: 630,
+        alt: "Mantice AI - Intelligent AI Tools and Solutions",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mantice AI",
+    description: "Transform your workflow with intelligent AI assistance",
+    creator: "@ManticeAI",
+    images: [
+      {
+        url: new URL("/mantice-og-image.jpg", APP_URL).toString(),
+        alt: "Mantice AI - Intelligent AI Tools and Solutions",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  other: {
+    "google-site-verification": "your-google-site-verification-code",
+  },
+};
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <body className={rethink_sans.className}>
+          <TooltipProvider>
+            <SiteLayout>
+              <div className="min-h-[75vh] ">{children}</div>
+            </SiteLayout>
+          </TooltipProvider>
+        </body>
+      </ThemeProvider>
+    </html>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/pricing/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/pricing/page.tsx
+##########
+
+import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Zap, InfoIcon, CreditCard, Check } from "lucide-react";
+import Link from "next/link";
+export const metadata = {
+  title: "Pricing - Pay As You Go AI Tools",
+  description:
+    "Simple, transparent pricing for AI tools. Pay only for what you use with our credit-based system. No subscriptions, no hidden fees.",
+};
+const PricingPage = () => {
+  return (
+    <div className="container mx-auto py-12 space-y-12">
+      {/* Header Section */}
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold tracking-tight">
+          Simple, Transparent Pricing
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Pay only for what you use with our credit-based system. No
+          subscriptions, no hidden fees.
+        </p>
+      </div>
+
+      {/* Pay As You Go Card */}
+      <Card className="border-2 border-primary">
+        <CardHeader className="text-center">
+          <div className="mx-auto h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <Zap className="h-6 w-6 text-primary" />
+          </div>
+          <CardTitle className="text-2xl">Pay As You Go</CardTitle>
+          <CardDescription>
+            Purchase credits and use them anytime
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="text-center space-y-2">
+            <div className="text-4xl font-bold">$0.01</div>
+            <div className="text-sm text-muted-foreground">per credit</div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-primary" />
+              <span>Credits never expire</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-primary" />
+              <span>No monthly commitments</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-primary" />
+              <span>Purchase in any amount starting at $5</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-primary" />
+              <span>Volume discounts available</span>
+            </div>
+          </div>
+          <Link href="/tools">
+            <Button className="w-full mt-6">Get Started</Button>
+          </Link>
+        </CardContent>
+      </Card>
+
+      {/* Volume Discounts */}
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold tracking-tight text-center">
+          Volume Discounts
+        </h2>
+        <Card>
+          <CardContent className="pt-6">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Purchase Amount</TableHead>
+                  <TableHead>Bonus Credits</TableHead>
+                  <TableHead>Effective Price Per Credit</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>$20 - $49</TableCell>
+                  <TableCell>+5% bonus credits</TableCell>
+                  <TableCell>$0.0095 per credit</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>$50 - $99</TableCell>
+                  <TableCell>+10% bonus credits</TableCell>
+                  <TableCell>$0.0091 per credit</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>$100+</TableCell>
+                  <TableCell>+15% bonus credits</TableCell>
+                  <TableCell>$0.0087 per credit</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* How It Works */}
+      <div className="space-y-4">
+        <h2 className="text-2xl font-bold tracking-tight text-center">
+          How Credits Work
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Purchase Credits</CardTitle>
+              <CardDescription>
+                Buy credits in any amount starting at $5. Credits are added
+                instantly to your account.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Use Tools</CardTitle>
+              <CardDescription>
+                Each tool shows its credit cost upfront. Credits are deducted
+                only when you use a tool.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Up Anytime</CardTitle>
+              <CardDescription>
+                Add more credits whenever you need them. No automatic renewals
+                or subscriptions.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
+
+      {/* FAQs */}
+      <div className="space-y-6">
+        <h2 className="text-2xl font-bold tracking-tight text-center">
+          Frequently Asked Questions
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Do credits expire?</CardTitle>
+              <CardDescription>
+                No, your credits never expire. Use them at your own pace without
+                any time pressure.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Can I get a refund?</CardTitle>
+              <CardDescription>
+                Unused credits can be refunded within 30 days of purchase.
+                Contact support for assistance.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>How are credit costs calculated?</CardTitle>
+              <CardDescription>
+                Each tool has a base cost plus additional credits based on the
+                complexity and resources used.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>What payment methods are accepted?</CardTitle>
+              <CardDescription>
+                We accept all major credit cards and process payments securely
+                through Paystack.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
+
+      {/* Enterprise Section */}
+      <Alert>
+        <InfoIcon className="h-4 w-4" />
+        <AlertTitle>Looking for enterprise pricing?</AlertTitle>
+        <AlertDescription>
+          Contact us for custom pricing and volume discounts for larger
+          organizations.
+        </AlertDescription>
+      </Alert>
+
+      {/* Safe and Secure */}
+      <div className="text-center space-y-4">
+        <div className="flex items-center justify-center gap-2">
+          <CreditCard className="h-5 w-5" />
+          <span className="text-sm text-muted-foreground">
+            Secure payments through Paystack
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PricingPage;
+
+
+==========
+
+##########
+FILE: app/contact/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/contact/page.tsx
+##########
+
+import SiteLayout from "@/components/site-layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Mail, MessageSquare, Building, ArrowRight, Clock } from "lucide-react";
+
+const contactMethods = [
+  {
+    icon: MessageSquare,
+    title: "Chat Support",
+    description: "Get instant help from our team",
+    action: "Start Chat",
+    link: "https://app.manticeai.com/support",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    description: "We'll respond within 24 hours",
+    action: "Send Email",
+    link: "mailto:support@manticeai.com",
+  },
+  {
+    icon: Building,
+    title: "Enterprise Support",
+    description: "Dedicated support for business",
+    action: "Contact Sales",
+    link: "/enterprise",
+  },
+];
+
+const offices = [
+  {
+    city: "Nairobi",
+    country: "Kenya",
+    address: "001 Moi Avenue",
+    timezone: "EAT (UTC+3)",
+  },
+];
+
+export default function ContactPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="container relative">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight mb-6">
+              We're Here to Help
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Get in touch with our team for support, sales inquiries, or
+              general questions. We're always happy to help.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Methods */}
+      <section className="py-12">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {contactMethods.map((method) => (
+              <Card key={method.title} className="group">
+                <CardHeader>
+                  <div className="mb-4 h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <method.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>{method.title}</CardTitle>
+                  <CardDescription>{method.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                  >
+                    <a href={method.link} className="gap-2">
+                      {method.action}
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container">
+          <div>
+            <h3 className="text-xl font-bold mb-6">Our Offices</h3>
+            <div className="space-y-8">
+              {offices.map((office) => (
+                <div key={office.city} className="rounded-lg border p-6">
+                  <h4 className="font-semibold mb-2">
+                    {office.city}, {office.country}
+                  </h4>
+                  <p className="text-muted-foreground mb-4">{office.address}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Clock className="h-4 w-4" />
+                    <span>Timezone: {office.timezone}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-lg border p-6 bg-primary/5">
+              <h4 className="font-semibold mb-2">Enterprise Support</h4>
+              <p className="text-muted-foreground mb-4">
+                For enterprise inquiries and dedicated support options, please
+                contact our sales team.
+              </p>
+              <Button variant="outline" asChild>
+                <a href="mailto:enterprise@manticeai.com" className="gap-2">
+                  Contact Enterprise Sales
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/security/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/security/page.tsx
+##########
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Shield,
+  Lock,
+  Key,
+  Server,
+  BookLock,
+  FileKey,
+  CheckCircle2,
+  ArrowRight,
+} from "lucide-react";
+
+const securityFeatures = [
+  {
+    icon: Lock,
+    title: "End-to-End Encryption",
+    description:
+      "All data is encrypted in transit and at rest using industry-standard encryption protocols.",
+  },
+  {
+    icon: Key,
+    title: "Access Control",
+    description:
+      "Role-based access control and multi-factor authentication options.",
+  },
+  {
+    icon: Server,
+    title: "Secure Infrastructure",
+    description:
+      "Hosted on enterprise-grade cloud infrastructure with regular security audits.",
+  },
+  {
+    icon: BookLock,
+    title: "Compliance",
+    description:
+      "Adherence to international security standards and regulations.",
+  },
+  {
+    icon: FileKey,
+    title: "Data Privacy",
+    description:
+      "Strong data privacy controls and transparent data handling practices.",
+  },
+  {
+    icon: Shield,
+    title: "24/7 Monitoring",
+    description: "Continuous security monitoring and threat detection systems.",
+  },
+];
+
+const certifications = [
+  "SOC 2 Type II Certified",
+  "ISO 27001 Certified",
+  "GDPR Compliant",
+  "CCPA Compliant",
+  "HIPAA Compliant",
+  "regular penetration testing",
+];
+
+export default function SecurityPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="container relative">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight mb-6">
+              Security First, Always
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              We take security seriously at every level. Learn about our
+              comprehensive approach to protecting your data and privacy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Security Features */}
+      <section className="py-20">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">
+              Enterprise-Grade Security
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our platform is built with security at its core, implementing
+              industry best practices at every layer.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {securityFeatures.map((feature) => (
+              <Card key={feature.title} className="relative overflow-hidden">
+                <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary/50 to-primary" />
+                <CardHeader>
+                  <div className="mb-4 h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <feature.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>{feature.title}</CardTitle>
+                  <CardDescription>{feature.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 text-center">
+              Certifications & Compliance
+            </h2>
+            <p className="text-muted-foreground mb-12 text-center">
+              We maintain the highest standards of security certifications and
+              regularly undergo independent audits.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {certifications.map((cert) => (
+                <div
+                  key={cert}
+                  className="flex items-center gap-4 p-4 rounded-lg border bg-background"
+                >
+                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="font-medium capitalize">{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Security Contact */}
+      <section className="py-20">
+        <div className="container">
+          <Card className="max-w-3xl mx-auto">
+            <CardHeader>
+              <CardTitle>Security Contact</CardTitle>
+              <CardDescription>
+                For security inquiries or to report vulnerabilities, please
+                contact our security team.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                We take all security reports seriously and will respond promptly
+                to investigate any potential vulnerabilities.
+              </p>
+              <Button asChild>
+                <a href="mailto:security@manticeai.com" className="gap-2">
+                  Contact Security Team
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/status/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/status/page.tsx
+##########
+
+import SiteLayout from "@/components/site-layout";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+  ArrowRight,
+  Bell,
+} from "lucide-react";
+
+// This would typically come from your status monitoring service
+const systems = [
+  {
+    name: "API",
+    status: "operational",
+    uptime: "99.99%",
+    lastIncident: null,
+  },
+  {
+    name: "Web App",
+    status: "operational",
+    uptime: "99.98%",
+    lastIncident: null,
+  },
+  {
+    name: "Database",
+    status: "operational",
+    uptime: "99.99%",
+    lastIncident: null,
+  },
+  {
+    name: "File Storage",
+    status: "operational",
+    uptime: "99.99%",
+    lastIncident: null,
+  },
+  {
+    name: "AI Processing",
+    status: "operational",
+    uptime: "99.95%",
+    lastIncident: null,
+  },
+  {
+    name: "Authentication",
+    status: "operational",
+    uptime: "100%",
+    lastIncident: null,
+  },
+];
+
+const recentIncidents = [
+  {
+    date: "2024-03-15",
+    title: "Increased API Latency",
+    status: "resolved",
+    duration: "23 minutes",
+    description:
+      "We experienced elevated API response times due to increased traffic. The issue has been resolved by scaling our infrastructure.",
+  },
+  {
+    date: "2024-03-10",
+    title: "Scheduled Maintenance",
+    status: "completed",
+    duration: "45 minutes",
+    description:
+      "Completed planned maintenance to upgrade our database infrastructure.",
+  },
+];
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "operational":
+      return "text-green-500";
+    case "degraded":
+      return "text-yellow-500";
+    case "outage":
+      return "text-red-500";
+    default:
+      return "text-muted-foreground";
+  }
+};
+
+export default function StatusPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="container relative">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-4 mb-6">
+              <CheckCircle2 className="h-8 w-8 text-green-500" />
+              <h1 className="text-4xl font-bold tracking-tight">
+                All Systems Operational
+              </h1>
+            </div>
+            <p className="text-xl text-muted-foreground mb-8">
+              Track the current status of Mantice AI services and view detailed
+              system metrics.
+            </p>
+            <div className="flex items-center gap-4">
+              <Button variant="outline" asChild>
+                <a href="#subscribe" className="gap-2">
+                  <Bell className="h-4 w-4" />
+                  Subscribe to Updates
+                </a>
+              </Button>
+              <Button variant="outline" asChild>
+                <a href="#history" className="gap-2">
+                  <Clock className="h-4 w-4" />
+                  View Incident History
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Current Status */}
+      <section className="py-12">
+        <div className="container">
+          <h2 className="text-2xl font-bold mb-8">Current Status</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {systems.map((system) => (
+              <Card key={system.name}>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-lg">{system.name}</CardTitle>
+                  <CheckCircle2
+                    className={`h-5 w-5 ${getStatusColor(system.status)}`}
+                  />
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Uptime: {system.uptime}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Incidents */}
+      <section className="py-12" id="history">
+        <div className="container">
+          <h2 className="text-2xl font-bold mb-8">Recent Incidents</h2>
+          <div className="space-y-6">
+            {recentIncidents.map((incident) => (
+              <Card key={incident.date}>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <CardTitle>{incident.title}</CardTitle>
+                      <CardDescription>
+                        {incident.date} · Duration: {incident.duration}
+                      </CardDescription>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium capitalize">
+                        {incident.status}
+                      </span>
+                      <CheckCircle2 className="h-5 w-5 text-green-500" />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    {incident.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Subscribe Section */}
+      <section className="py-20 bg-muted/50" id="subscribe">
+        <div className="container">
+          <Card className="max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>Subscribe to Status Updates</CardTitle>
+              <CardDescription>
+                Get notified about system status changes and planned
+                maintenance.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button asChild>
+                <a
+                  href="https://status.manticeai.com/subscribe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gap-2"
+                >
+                  Subscribe to Status Updates
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Metrics Section */}
+      <section className="py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <Card>
+              <CardHeader>
+                <CardTitle>30-Day Uptime</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-green-500">99.99%</div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Last 30 days average
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Response Time</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">245ms</div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Global average
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Active Incidents</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">0</div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Currently monitoring
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Support Information */}
+      <section className="py-12 border-t">
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
+            <p className="text-muted-foreground mb-6">
+              If you're experiencing issues not reflected in our status page,
+              please contact our support team.
+            </p>
+            <Button variant="outline" asChild>
+              <a href="mailto:support@manticeai.com" className="gap-2">
+                Contact Support
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/about/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/about/page.tsx
+##########
+
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Users, Sparkles, Target, Globe } from "lucide-react";
+
+const values = [
+  {
+    icon: Sparkles,
+    title: "Innovation First",
+    description:
+      "Pushing the boundaries of AI technology to create powerful, accessible tools.",
+  },
+  {
+    icon: Users,
+    title: "User-Centric",
+    description:
+      "Building solutions that genuinely improve how people work and create.",
+  },
+  {
+    icon: Target,
+    title: "Quality & Precision",
+    description:
+      "Delivering accurate, reliable results that professionals can trust.",
+  },
+  {
+    icon: Globe,
+    title: "Global Impact",
+    description: "Making advanced AI technology accessible to users worldwide.",
+  },
+];
+
+const team = [
+  {
+    name: "Sarah Chen",
+    role: "CEO & Co-founder",
+    image: "/team/sarah.jpg",
+  },
+  {
+    name: "Michael Roberts",
+    role: "CTO & Co-founder",
+    image: "/team/michael.jpg",
+  },
+  {
+    name: "David Kim",
+    role: "Head of AI",
+    image: "/team/david.jpg",
+  },
+  {
+    name: "Elena Rodriguez",
+    role: "Head of Product",
+    image: "/team/elena.jpg",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <>
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="container relative">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              Transforming Work Through
+              <span className="text-primary"> Artificial Intelligence</span>
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              We're on a mission to democratize AI technology, making powerful
+              tools accessible to creators, developers, and businesses
+              worldwide.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
+              <p className="text-muted-foreground mb-4">
+                Founded in 2023, Mantice AI emerged from a simple observation:
+                while AI technology was becoming increasingly powerful, it
+                remained inaccessible to many who could benefit from it.
+              </p>
+              <p className="text-muted-foreground mb-6">
+                Today, we're proudly serving users across 150+ countries,
+                helping them leverage AI to enhance their creativity,
+                productivity, and capabilities.
+              </p>
+              <Button className="gap-2">
+                Join Our Journey
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
+              <Image
+                src="/office.jpg"
+                alt="Mantice AI Office"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide our decisions and shape our product
+              development.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((value) => (
+              <div
+                key={value.title}
+                className="relative rounded-xl border p-8 bg-background hover:border-primary/50 transition-colors"
+              >
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                  <value.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Our Team</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Meet the people behind Mantice AI who are passionate about making
+              AI accessible and useful for everyone.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member) => (
+              <div key={member.name} className="text-center">
+                <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
+                <p className="text-sm text-muted-foreground">{member.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center text-primary-foreground">
+            <h2 className="text-3xl font-bold mb-4">
+              Join Us in Shaping the Future
+            </h2>
+            <p className="text-primary-foreground/80 mb-8">
+              Whether you're a developer, creator, or business leader, there's a
+              place for you in our growing community.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="secondary" size="lg" asChild className="gap-2">
+                <a href="https://app.manticeai.com/register">
+                  Get Started Free
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+              >
+                <a href="/careers">View Open Positions</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+==========
+
+##########
+FILE: app/blog/page.tsx
+FULL PATH: /home/kelvin/coding/ai/manticeai/landingpage/app/blog/page.tsx
+##########
+
+import SiteLayout from "@/components/site-layout";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Search, ArrowRight } from "lucide-react";
+
+// This would typically come from your CMS or API
+const blogPosts = [
+  {
+    id: 1,
+    title: "The Future of AI: Transforming Work in 2024 and Beyond",
+    excerpt:
+      "Explore how artificial intelligence is reshaping the workplace and what it means for professionals across industries.",
+    image: "/blog/future-ai.jpg",
+    category: "AI Insights",
+    author: {
+      name: "Sarah Chen",
+      image: "/team/sarah.jpg",
+    },
+    date: "Mar 15, 2024",
+    readTime: "5 min read",
+  },
+  {
+    id: 2,
+    title: "10 Ways to Optimize Your AI Workflow",
+    excerpt:
+      "Learn practical tips and strategies to make the most of AI tools in your daily work routine.",
+    image: "/blog/workflow.jpg",
+    category: "Tutorials",
+    author: {
+      name: "Michael Roberts",
+      image: "/team/michael.jpg",
+    },
+    date: "Mar 12, 2024",
+    readTime: "8 min read",
+  },
+  // Add more blog posts...
+];
+
+const categories = [
+  "All Posts",
+  "AI Insights",
+  "Tutorials",
+  "Case Studies",
+  "Company News",
+  "Product Updates",
+];
+
+export default function BlogPage() {
+  return (
+    <>
+      {/* Header */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+        <div className="container relative">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight mb-6">
+              Insights & Updates from Mantice AI
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Explore the latest in AI technology, tutorials, and company
+              updates.
+            </p>
+            {/* Search Bar */}
+            <div className="relative max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Search articles..." className="pl-10" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="border-y bg-muted/50">
+        <div className="container py-4">
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {categories.map((category, index) => (
+              <Button
+                key={category}
+                variant={index === 0 ? "default" : "outline"}
+                size="sm"
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Post */}
+      <section className="py-12">
+        <div className="container">
+          <article className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
+              <Image
+                src={blogPosts[0].image}
+                alt={blogPosts[0].title}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <Badge variant="secondary" className="mb-4">
+                {blogPosts[0].category}
+              </Badge>
+              <h2 className="text-3xl font-bold mb-4">
+                <Link
+                  href={`/blog/${blogPosts[0].id}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {blogPosts[0].title}
+                </Link>
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                {blogPosts[0].excerpt}
+              </p>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative h-10 w-10 rounded-full overflow-hidden">
+                  <Image
+                    src={blogPosts[0].author.image}
+                    alt={blogPosts[0].author.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-medium">{blogPosts[0].author.name}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {blogPosts[0].date} · {blogPosts[0].readTime}
+                  </p>
+                </div>
+              </div>
+              <Button asChild>
+                <Link href={`/blog/${blogPosts[0].id}`} className="gap-2">
+                  Read More
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* Blog Grid */}
+      <section className="py-12">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.slice(1).map((post) => (
+              <article key={post.id} className="group">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                  />
+                </div>
+                <Badge variant="secondary" className="mb-2">
+                  {post.category}
+                </Badge>
+                <h3 className="text-xl font-semibold mb-2">
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="hover:text-primary transition-colors"
+                  >
+                    {post.title}
+                  </Link>
+                </h3>
+                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                <div className="flex items-center gap-4">
+                  <div className="relative h-8 w-8 rounded-full overflow-hidden">
+                    <Image
+                      src={post.author.image}
+                      alt={post.author.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{post.author.name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {post.date} · {post.readTime}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container">
+          <div className="max-w-xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-4">
+              Stay Updated with Our Newsletter
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Get the latest insights and updates delivered directly to your
+              inbox.
+            </p>
+            <form className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="max-w-sm flex-1"
+              />
+              <Button type="submit">Subscribe</Button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+
+==========
